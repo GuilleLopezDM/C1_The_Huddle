@@ -12,12 +12,12 @@ class Juego:
         self._ronda = 1
         self._enemigos_derrotados = 0
         self._enemigo_actual = self._crear_enemigo()
-
+    #crea enemigos
     def _crear_enemigo(self):
         if self._enemigos_derrotados >= 3:
             return Margit()
         return random.choice([SoldadoDeGodrick(), DemiHumano()])
-
+    #toma la accion del jugador y la realiza
     def _manejar_accion_jugador(self, accion: str) -> str:
         self._jugador.cargar_ceniza()
 
@@ -29,7 +29,7 @@ class Juego:
             return self._jugador.usar_ceniza_de_guerra(self._enemigo_actual)
 
         return "Acción inválida. Perdés el turno."
-
+    #toma la accion del enemigo y la realiza
     def _turno_enemigo(self) -> str:
         if self._enemigo_actual.esta_vivo:
             return self._enemigo_actual.tomar_turno(self._jugador)
